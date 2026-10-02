@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basera</title>
+</head>
+<body>
+    <h2>Create a new Listing</h2>
+
+    <form method="POST" action="/listings">
+
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="listing[title]" ><br><br>
+        <br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="listing[description]"></textarea><br><br>
+        <br>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="listing[price]" ><br><br>
+        <br>
+
+        <lable for="image">Image URL:</label>
+        <input type="text" id="image" name="listing[image]" ><br><br>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="listing[location]" ><br><br>
+        <br>
+
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="listing[country]" ><br><br>
+        <br>
+
+        <button>Add this Listing</button>
+
+    </form>
+</body>
+</html>
