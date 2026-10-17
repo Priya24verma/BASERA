@@ -4,49 +4,62 @@
 <br><br>
     <h2>Create a new Listing</h2>
 
-    <form method="POST" action="/listings">
+    <form method="POST" action="/listings" novalidate class="needs-validation">
 
         <div class="mb-3">
         <label for="title" class="form-label">Title:</label>
-        <input type="text" id="title" name="listing[title]" class="form-control" placeholder="Add a Catchy Tittle">
+        <input type="text" id="title" name="listing[title]" class="form-control" placeholder="Add a Catchy Tittle" required>
         <br>
+         <div class="invalid-feedback">Tittle should be valid </div>
+         <div class="valid-feedback">Title looks good</div>
         </div>
+        
 
         <div class="mb-3">
         <label for="description" class="form-label">Description:</label>
-        <textarea id="description" name="listing[description]" class="form-control"></textarea>
+        <textarea id="description" name="listing[description]" type="text" class="form-control" required></textarea>
         <br>
+         <div class="invalid-feedback">Please add a short descryption</div>
+         <div class="valid-feedback">Descryption looks good</div>
         </div>
-
+        
 
         <div class="row"  style="display: flex; width: 100%;">
 
               <div  class="mb-3 price-col">
         <label for="price" class="form-label">Price:</label>
-        <input type="number" id="price" name="listing[price]" class="form-control" placeholder="1200">
+        <input type="text" id="price" name="listing[price]" class="form-control" placeholder="1200" required>
         <br>
+        <div class="invalid-feedback">Price should be valid</div>
+         <div class="valid-feedback">Valid!!</div>
         </div>
+        
 
             <div class="mb-3 country-col">
         <label for="country" class="form-label">Country:</label>
-        <input type="text" id="country" name="listing[country]" class="form-control" placeholder="India">
+        <input type="text" id="country" name="listing[country]" class="form-control" placeholder="India" required>
         <br>
+         <div class="invalid-feedback">Country name should be valid </div>
+          <div class="valid-feedback">Country name looks valid </div>
         </div>
+       
 
         </div>
 
         <div class="mb-3">
         <label for="image" class="form-label">Image URL:</label>
-         <input name="listing[image]" placeholder="enter image URL/Link" type="text" class="form-control">
+         <input name="listing[image]" placeholder="enter image URL/Link" type="text" class="form-control" >
         <br>
         </div>
 
         <div class="mb-3">
         <label for="location" class="form-label">Location:</label>
-        <input type="text" id="location" name="listing[location]" class="form-control" placeholder="Jaipur,Rajasthan" >
+        <input type="text" id="location" name="listing[location]" class="form-control" placeholder="Jaipur,Rajasthan" required>
         <br>
+         <div class="invalid-feedback">Location should be valid</div>
+         <div class="valid-feedback">Location looks cool</div>
         </div>
-
+        
         
 
         <button class="btn btn-dark add-btn mt-3">Add this Listing</button>
