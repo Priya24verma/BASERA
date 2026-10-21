@@ -5,6 +5,8 @@ const path = require('path');
 const methodOverride = require("method-override");
 const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/Expresserror.js');
+const session = require('express-session');
+const flash = require('connect-flash');
 
 
 const listings = require('./routes/listing.js');
@@ -31,10 +33,35 @@ app.use(methodOverride('_method'));
 app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, 'public')));
 
+// session configuration
+const sessionOptions = {
+    secret: "mysecretcode",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // 1 week
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+        httpOnly: true
+    }
+};
 
 app.get('/', (req, res) => {
     res.send('hi i m working');
 });
+
+// For using session 
+app.use(session(sessionOptions));
+
+// For using flash messages
+app.use(flash());
+
+// middleware to set flash messages in res.locals so that they can be accessed in the views
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+});
+
 
 // listing routes
 app.use("/listings", listings);
