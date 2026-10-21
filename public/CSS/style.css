@@ -5,6 +5,16 @@ body{
     flex-direction: column;
     min-height: 100vh;
 }
+.basera-title {
+    text-align: center;
+    color: #e63946;
+    font-family: 'Great Vibes', cursive !important;
+    font-size: 100px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin: 2px 0;
+}
+
 
 .container{
     flex: 1;

@@ -7,10 +7,14 @@ const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/Expresserror.js');
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user.js');
 
 
-const listings = require('./routes/listing.js');
-const reviews = require('./routes/review.js');
+const listingsRouter = require('./routes/listing.js');
+const reviewsRouter = require('./routes/review.js');
+const usersRouter = require('./routes/user.js');
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/Basera";
 
@@ -62,12 +66,24 @@ app.use((req, res, next) => {
     next();
 });
 
+// For using passport
+app.use(passport.initialize());
+app.use(passport.session()); // this is use to know if the user is using same browser or not, if yes then it will not ask for login again and again
+passport.use(new LocalStrategy(User.authenticate())); // this is use to authenticate the user using passport-local-mongoose
+
+// serialize and deserialize user
+passport.serializeUser(User.serializeUser()); // this means user information will be stored in the session 
+passport.deserializeUser(User.deserializeUser()); // this means user info when user end its session will be removed from the session
+
 
 // listing routes
-app.use("/listings", listings);
+app.use("/listings", listingsRouter);
 
 // review routes
-app.use("/listings/:id/reviews", reviews);
+app.use("/listings/:id/reviews", reviewsRouter);
+
+// user routes
+app.use("/", usersRouter);
 
 
 app.all("/{*splat}", (req, res, next) => {
