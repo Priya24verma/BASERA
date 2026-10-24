@@ -59,22 +59,24 @@ app.use(session(sessionOptions));
 // For using flash messages
 app.use(flash());
 
-// middleware to set flash messages in res.locals so that they can be accessed in the views
-app.use((req, res, next) => {
-    res.locals.success = req.flash('success');
-    res.locals.error = req.flash('error');
-    next();
-});
 
 // For using passport
 app.use(passport.initialize());
 app.use(passport.session()); // this is use to know if the user is using same browser or not, if yes then it will not ask for login again and again
+
 passport.use(new LocalStrategy(User.authenticate())); // this is use to authenticate the user using passport-local-mongoose
 
 // serialize and deserialize user
 passport.serializeUser(User.serializeUser()); // this means user information will be stored in the session 
 passport.deserializeUser(User.deserializeUser()); // this means user info when user end its session will be removed from the session
 
+// middleware to set flash messages in res.locals so that they can be accessed in the views
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    res.locals.currUser = req.user; // this is used to check if the user is logged in or not in the views
+    next();
+});
 
 // listing routes
 app.use("/listings", listingsRouter);

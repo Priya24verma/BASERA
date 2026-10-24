@@ -17,10 +17,15 @@ async function main() {
   await mongoose.connect(MONGO_URL);
 }
 
-const InitDB = async () => {
+const initDB = async () => {
     await Listing.deleteMany({});
+    initData.data = initData.data.map((obj) => ({
+    ...obj,
+    image: typeof obj.image === "object" ? obj.image.url : obj.image,
+    owner: "6ad8f777ad02a43d9f9e074c"
+    }));
     await Listing.insertMany(initData.data);
     console.log('Database initialized ');
 };
 
-InitDB();
+initDB();
