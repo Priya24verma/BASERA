@@ -136,3 +136,16 @@ body{
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
+.edit-image {
+    width: 187px;
+    height: 112px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+
+/*map styling*/
+#map { 
+    height: 400px;
+    widhth: 80vh; 
+}
