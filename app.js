@@ -54,9 +54,9 @@ const sessionOptions = {
     }
 };
 
-app.get('/', (req, res) => {
-    res.send('hi i m working');
-});
+//app.get('/', (req, res) => {
+  //  res.send('hi i m working');
+//});
 
 // For using session 
 app.use(session(sessionOptions));
